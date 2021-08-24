@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:proveedor/src/screens/home/home_screen.dart';
 import 'package:proveedor/src/screens/login/login_screen.dart';
 
@@ -18,7 +19,15 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    
+     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        systemNavigationBarColor:
+            Color(0xffff6161), // navigation bar color
+        statusBarColor: Color(0xffff6161) // status bar color
+        ));
+
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
        
