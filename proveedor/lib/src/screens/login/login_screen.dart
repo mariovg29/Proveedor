@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 class LoginScreen extends StatelessWidget {
   final Function loginSuccess;
 
-  const LoginScreen({Key key, this.loginSuccess}) : super(key: key);
+  const LoginScreen({Key? key, required this.loginSuccess}) : super(key: key);
+
+  
   
   @override
   Widget build(BuildContext context) {
