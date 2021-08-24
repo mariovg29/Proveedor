@@ -12,6 +12,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
      return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xffff6161),
         title: Text('Iniciar sesión'),
         centerTitle: true,
       ),
