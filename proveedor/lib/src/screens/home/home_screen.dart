@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 class HomeScreen extends StatelessWidget {
   final Function logoutSuccess;
 
-  const HomeScreen({Key key, this.logoutSuccess}) : super(key: key);
+  const HomeScreen({Key? key, required this.logoutSuccess}) : super(key: key);
+
+  
 
  
 
