@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:proveedor/src/rutas/rutas.dart';
 import 'package:proveedor/src/screens/home/home_screen.dart';
 import 'package:proveedor/src/screens/login/login_screen.dart';
 
@@ -33,29 +34,31 @@ class _MyAppState extends State<MyApp> {
        
         primarySwatch: Colors.blue,
       ),
-     routes: {
-       '/': (BuildContext context ){
-         if(_loggedin){
-         return HomeScreen(
-            logoutSuccess: (){
-              setState(() {
-              _loggedin=false;
-                            });
-            },
+      routes: getAplicationRoutes(),
+      
+    //  routes: {
+    //    '/': (BuildContext context ){
+    //      if(_loggedin){
+    //      return HomeScreen(
+    //         logoutSuccess: (){
+    //           setState(() {
+    //           _loggedin=false;
+    //                         });
+    //         },
            
-         );
-         } else {
-          return LoginScreen(
-            loginSuccess: (){
-              setState(() {
-              _loggedin=true;
-                            });
-            },
-          );
+    //      );
+    //      } else {
+    //       return LoginScreen(
+    //         loginSuccess: (){
+    //           setState(() {
+    //           _loggedin=true;
+    //                         });
+    //         },
+    //       );
 
-         }
-       }       
-     },
+    //      }
+    //    }       
+    //  },
     );
   }
 }
