@@ -31,7 +31,8 @@ class BienvenidaHome extends StatelessWidget {
                     style: TextStyle(
                       fontSize: height*.017, fontWeight: FontWeight.bold, color: Colors.white)),
 
-                      SizedBox(height: height*.009,),
+                      SizedBox(height: height*.009
+                      ,),
                       
                     Text('Nombre de Usuario', 
                     style: TextStyle(

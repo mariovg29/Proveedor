@@ -5,9 +5,9 @@ import 'package:proveedor/src/screens/home/widgets_home/bienvenida_home.dart';
 
 
 class HomeScreen extends StatelessWidget {
-  final Function logoutSuccess;
+  // final Function logoutSuccess;
 
-  const HomeScreen({Key? key, required this.logoutSuccess}) : super(key: key);
+  // const HomeScreen({Key? key, required this.logoutSuccess}) : super(key: key);
 
   
 
