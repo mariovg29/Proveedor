@@ -72,7 +72,7 @@ class _BotonesCard extends StatelessWidget {
                 ),
                 SizedBox(height: 10),
                 Text(this.text, 
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),)
+                style: TextStyle(fontSize: height*.015, fontWeight: FontWeight.bold),)
               ],
             ),
           ),
