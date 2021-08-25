@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:proveedor/src/screens/home/widgets_home/background_home.dart';
 import 'package:proveedor/src/screens/home/widgets_home/bienvenida_home.dart';
+import 'package:proveedor/src/screens/home/widgets_home/botones_home.dart';
 
 
 
@@ -26,7 +27,15 @@ class HomeScreen extends StatelessWidget {
       body: Stack(
         children: [
           BackgroundHome(),
-          BienvenidaHome(),
+          Column(
+            children: [
+              BienvenidaHome(),
+
+              BotonesHome(),
+
+              Servicios()
+            ],
+          ),
           
 
         ],
@@ -36,5 +45,57 @@ class HomeScreen extends StatelessWidget {
      
             
     );
+  }
+}
+
+class Servicios extends StatelessWidget {
+  const Servicios({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(                
+      child:  Center(
+        child: Container(
+          width: double.infinity,
+          margin: EdgeInsets.only(top: 10,right: 5,left:5),
+          color: Colors.black,
+          
+          child: Column(
+            children: [                       
+              SizedBox(height: 10,),
+              Text('Espacio para lista de servicios',style: TextStyle(color: Colors.white),),
+              SizedBox(height: 10,),
+              Text('Espacio para lista de servicios',style: TextStyle(color: Colors.white),),
+              SizedBox(height: 10,),
+              Text('Espacio para lista de servicios',style: TextStyle(color: Colors.white),),
+              SizedBox(height: 10,),
+              Text('Espacio para lista de servicios',style: TextStyle(color: Colors.white),),
+              SizedBox(height: 10,),
+              Text('Espacio para lista de servicios',style: TextStyle(color: Colors.white),),
+              SizedBox(height: 10,),
+              Text('Espacio para lista de servicios',style: TextStyle(color: Colors.white),),
+              SizedBox(height: 10,),
+              Text('Espacio para lista de servicios',style: TextStyle(color: Colors.white),),
+              SizedBox(height: 10,),
+              Text('Espacio para lista de servicios',style: TextStyle(color: Colors.white),),
+              SizedBox(height: 10,),
+              Text('Espacio para lista de servicios',style: TextStyle(color: Colors.white),),
+              SizedBox(height: 10,),
+              Text('Espacio para lista de servicios',style: TextStyle(color: Colors.white),),
+              SizedBox(height: 10,),
+              Text('Espacio para lista de servicios',style: TextStyle(color: Colors.white),),
+              SizedBox(height: 10,),
+              Text('Espacio para lista de servicios',style: TextStyle(color: Colors.white),),
+              
+              
+             
+
+            ],
+          )
+          ),
+      )
+      );
   }
 }
