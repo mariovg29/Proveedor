@@ -60,7 +60,11 @@ class Servicios extends StatelessWidget {
         child: Container(
           width: double.infinity,
           margin: EdgeInsets.only(top: 10,right: 5,left:5),
-          color: Colors.black,
+          decoration: BoxDecoration(
+             color: Color(0xffff6161).withOpacity(0.8),
+             borderRadius: BorderRadius.circular(10)
+          ),
+         
           
           child: Column(
             children: [                       
