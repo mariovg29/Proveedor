@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart';
 
 class GraphWidget extends StatefulWidget {
+
+  final List<double> data;
+
+  const GraphWidget({Key? key, required this.data}) : super(key: key);
   @override
   _GraphWidgetState createState() => _GraphWidgetState();
 }
@@ -56,7 +60,7 @@ class _GraphWidgetState extends State<GraphWidget> {
         colorFn: (_, __) => MaterialPalette.blue.shadeDefault,
         domainFn: (value, index) => index!.toInt(),
         measureFn: (value, _) => value,
-        data: data,
+        data: widget.data,
         strokeWidthPxFn: (_, __) => 4,
       )
     ];

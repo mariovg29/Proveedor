@@ -1,12 +1,36 @@
-import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:proveedor/src/screens/historial/widgets_historial/graph_historial.dart';
 
-class HistorialScreen extends StatelessWidget {
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:proveedor/src/screens/historial/widgets_historial/month_widget_historial.dart';
+
+class HistorialScreen extends StatefulWidget {
+  const HistorialScreen({Key? key}) : super(key: key);
   
 
   @override
+  _HistorialScreenState createState() => _HistorialScreenState();
+}
+
+class _HistorialScreenState extends State<HistorialScreen> {
+
+  
+
+  final PageController _monthController = PageController();
+  int currentPage = 7;
+   
+  
+  @override
+  void initState() {
+    _monthController.dispose();
+    super.initState();
+  
+  }
+ 
+  
+  @override
   Widget build(BuildContext context) {
+
+    
     return Scaffold(
       appBar: AppBar(title: Text('Historial'),
       backgroundColor: Color(0xffff6161),
@@ -26,102 +50,129 @@ class HistorialScreen extends StatelessWidget {
       ],
        ),
        body: _body(),
+       
       
     );
   }
 
   Widget _body() {
+     
+  final Stream<QuerySnapshot<Object?>> 
+  _query = FirebaseFirestore
+  .instance
+  .collection('Ventas').where("mes",isEqualTo: currentPage+1)
+  .snapshots();
+
     return SafeArea(
-      child: Column(
-        children: [
-          _selector(),
-          _ventas(),
-          _graph(),
-          Container(
-            color: Color(0xffff6161).withOpacity(0.15),
-            height: 20 ,
-          ),
-          _list(),
-        ],
+      child: Container(
+        child: Column(
+          children: <Widget>[
+            _selector(),
+            StreamBuilder<QuerySnapshot>(
+              stream: _query,
+              
+              builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot){
+                if (snapshot.hasData){
+                return MonthWidgetHistorial(
+                  ventas: snapshot.data!.docs,
+                 
+                 );
+                }
+                return Center(
+                  child: CircularProgressIndicator());
+              }
+            
+            ),
+          ]
+        ),
       ),
 
     );
   }
-}
 
-Widget _selector()=>Container();
 
-Widget _ventas(){
-  return Column(
-    children: [
-      Text('\$2345.41', 
-      style: TextStyle(
-        fontWeight: FontWeight.bold,
-        fontSize: 40.0,
-        color: Color(0xffff6161),)
+Widget _pageItem(String nombreMes, int position){
+  var _alignment;
+  //int currentPage=7;
 
-      ),
-      Text('Total de Ventas en el mes',
-      style: TextStyle(
-        fontWeight: FontWeight.bold,
-        fontSize: 16.0,
-        color: Colors.blueGrey,)
-      )
-    ],
-
+  final selected = TextStyle(
+    fontSize: 25.0,
+    fontWeight: FontWeight.bold,
+    color: Colors.purple,
   );
+  final unselected= TextStyle(
+    fontSize: 15.0,
+    fontWeight: FontWeight.normal,
+    color: Colors.blueGrey,
+  );
+
+
+  if(position == currentPage){
+    _alignment = Alignment.center;
   }
-
-Widget _graph(){
-  return Container(
-    height: 150,
-
-    child: GraphWidget(),
-
-);
+  else if(position>currentPage){
+    _alignment=Alignment.centerRight;
+  }else{
+    _alignment =Alignment.centerLeft;
+  }
+  return Align(
+    alignment: _alignment,
+    child: Text(nombreMes,
+    style: position==currentPage? selected : unselected,)
+    );
 }
-Widget _item(IconData icon, String nombre, int percent, double value){
-  return ListTile(
-    leading: Icon(icon, size: 32.0),
-    title: Text(nombre, 
-    style: TextStyle(
-      fontSize: 20,
-      fontWeight: FontWeight.bold)
-      ),
-    subtitle: Text("$percent% de las ventas"),
-    trailing: Container(
-      decoration: BoxDecoration(
-        color:  Color(0xffff6161),
-        borderRadius: BorderRadius.circular(5)
 
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Text('\$$value', 
-        style: TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-          fontSize: 16) ,),
-      )),
-  );
-}
-Widget _list(){
-  return Expanded(
-    child: ListView(
-      children: [
-        _item(FontAwesomeIcons.shoppingCart, "Mariachi que sabe todas", 14, 145.12),
-        _item(FontAwesomeIcons.shoppingCart, "Unas bien frias", 10, 100.00),
-        _item(FontAwesomeIcons.shoppingCart, "Chelas pa la banda", 10, 99.12),
-        _item(FontAwesomeIcons.shoppingCart, "Paquete diviertas", 20, 200.12),
-        _item(FontAwesomeIcons.shoppingCart, "Mariachi que sabe todas", 14, 145.12),
-        _item(FontAwesomeIcons.shoppingCart, "Unas bien frias", 10, 100.00),
-        _item(FontAwesomeIcons.shoppingCart, "Mariachi que sabe todas", 14, 145.12),
-        _item(FontAwesomeIcons.shoppingCart, "Mariachi que sabe todas", 14, 145.12),         
-        _item(FontAwesomeIcons.shoppingCart, "Unas bien frias", 10, 100.00),
-        _item(FontAwesomeIcons.shoppingCart, "Chelas pa la banda", 10, 99.12),
-         
+Widget _selector ()
+{  
+  
+  
+   final PageController _monthController = PageController(
+     initialPage: 7,
+     viewportFraction: 0.35
+   );
 
-      ],
+
+  
+  return SizedBox.fromSize(
+    size:Size.fromHeight(80),
+    child: PageView(
+      onPageChanged: (newPage){ 
+        
+        setState(() {
+        currentPage= newPage;       
+        
+                });
+       
+          
+
+       
+
+      },
+      controller: _monthController,
+      children:<Widget>[
+        _pageItem('Enero', 0),
+        _pageItem('Febrero', 1),
+        _pageItem('Marzo', 2),
+        _pageItem('Abril', 3),
+        _pageItem('Mayo', 4),
+        _pageItem('Junio', 5),
+        _pageItem('Julio', 6),
+        _pageItem('Agosto', 7),
+        _pageItem('Septiembre', 8),
+        _pageItem('Octubre', 9),
+        _pageItem('Noviembre', 10),
+        _pageItem('Diciembre', 11),
+
+       
+      ],     
+       
     ),
   );
+}
+
+
+
+
+
+
 }

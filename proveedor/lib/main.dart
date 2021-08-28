@@ -1,10 +1,13 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:proveedor/src/rutas/rutas.dart';
 import 'package:proveedor/src/screens/home/home_screen.dart';
 import 'package:proveedor/src/screens/login/login_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
