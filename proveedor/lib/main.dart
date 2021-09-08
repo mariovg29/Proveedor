@@ -34,35 +34,33 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-       
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.pink,
       ),
       routes: getAplicationRoutes(),
-      
-    //  routes: {
-    //    '/': (BuildContext context ){
-    //      if(_loggedin){
-    //      return HomeScreen(
-    //         logoutSuccess: (){
-    //           setState(() {
-    //           _loggedin=false;
-    //                         });
-    //         },
-           
-    //      );
-    //      } else {
-    //       return LoginScreen(
-    //         loginSuccess: (){
-    //           setState(() {
-    //           _loggedin=true;
-    //                         });
-    //         },
-    //       );
 
-    //      }
-    //    }       
-    //  },
+      //  routes: {
+      //    '/': (BuildContext context ){
+      //      if(_loggedin){
+      //      return HomeScreen(
+      //         logoutSuccess: (){
+      //           setState(() {
+      //           _loggedin=false;
+      //                         });
+      //         },
+
+      //      );
+      //      } else {
+      //       return LoginScreen(
+      //         loginSuccess: (){
+      //           setState(() {
+      //           _loggedin=true;
+      //                         });
+      //         },
+      //       );
+
+      //      }
+      //    }
+      //  },
     );
   }
 }
-
