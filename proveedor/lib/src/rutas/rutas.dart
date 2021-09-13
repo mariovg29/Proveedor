@@ -11,15 +11,15 @@ import 'package:proveedor/src/screens/login/Screens/Screens.dart';
 
 Map<String, WidgetBuilder> getAplicationRoutes() {
   return <String, WidgetBuilder>{
-    'login': (BuildContext context) => LoginScreen(),
-    '/': (BuildContext context) => HomeScreen(),
+    '/': (BuildContext context) => LoginScreen(),
+    'home': (BuildContext context) => HomeScreen(),
     'agenda': (BuildContext context) => AgendaScreen(),
     'agregar': (BuildContext context) => AgregarScreen(),
     'descuentos': (BuildContext context) => DescuentosScreen(),
     'historial': (BuildContext context) => HistorialScreen(),
     'servicios': (BuildContext context) => ServiciosScreen(),
     'perfil': (BuildContext context) => PerfilScreen(),
-    'home': (BuildContext context) => ServiciosEdit(),
+    'servicio': (BuildContext context) => ServiciosEdit(),
     'product': (BuildContext context) => ProductScreen(),
   };
 }
