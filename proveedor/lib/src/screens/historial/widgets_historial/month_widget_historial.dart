@@ -14,6 +14,7 @@ class MonthWidgetHistorial extends StatefulWidget {
   MonthWidgetHistorial({Key? key, required this.ventas}) :
         total= ventas.map((docs) => docs['Precio'])
         .fold(0.0, (a,b) => a+b),
+
         daily = List.generate(30, (index) {
           return ventas.where((docs) => docs['Dia']== (index+1)).map
           ((docs) => docs['Precio']).fold(0.0, (a, b) => a+b);
@@ -73,6 +74,7 @@ Widget _ventas(){
 
   Widget _graph(){
   return Container(
+    padding: EdgeInsets.only(left: 10),
     height: 150,
 
     child: GraphWidget(
@@ -82,7 +84,7 @@ Widget _ventas(){
 }
 Widget _item(IconData icon, String nombre, int percent, double value){
   return ListTile(
-    leading: Icon(icon, size: 32.0),
+    leading: Icon(icon, size: 32.0,color: Color(0xffff6161),),
     title: Text(nombre, 
     style: TextStyle(
       fontSize: 20,
@@ -91,7 +93,7 @@ Widget _item(IconData icon, String nombre, int percent, double value){
     subtitle: Text("$percent% de las ventas"),
     trailing: Container(
       decoration: BoxDecoration(
-        color:  Color(0xffff6161),
+        // color:  Color(0xffff6161),
         borderRadius: BorderRadius.circular(5)
 
       ),
@@ -103,6 +105,8 @@ Widget _item(IconData icon, String nombre, int percent, double value){
           fontWeight: FontWeight.bold,
           fontSize: 16) ,),
       )),
+      
+      
   );
 }
 
