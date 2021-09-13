@@ -4,11 +4,23 @@ import 'package:flutter/services.dart';
 import 'package:proveedor/src/rutas/rutas.dart';
 import 'package:proveedor/src/screens/home/home_screen.dart';
 import 'package:proveedor/src/screens/login/login_screen.dart';
+import 'package:proveedor/src/screens/login/services/services.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(AppState());
+}
+
+class AppState extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => Services())],
+      child: MyApp(),
+    );
+  }
 }
 
 class MyApp extends StatefulWidget {
@@ -18,15 +30,12 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   bool _loggedin = false;
 
   @override
   Widget build(BuildContext context) {
-    
-     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        systemNavigationBarColor:
-            Color(0xffff6161), // navigation bar color
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        systemNavigationBarColor: Color(0xffff6161), // navigation bar color
         statusBarColor: Color(0xffff6161) // status bar color
         ));
 
@@ -34,35 +43,33 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-       
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.pink,
       ),
       routes: getAplicationRoutes(),
-      
-    //  routes: {
-    //    '/': (BuildContext context ){
-    //      if(_loggedin){
-    //      return HomeScreen(
-    //         logoutSuccess: (){
-    //           setState(() {
-    //           _loggedin=false;
-    //                         });
-    //         },
-           
-    //      );
-    //      } else {
-    //       return LoginScreen(
-    //         loginSuccess: (){
-    //           setState(() {
-    //           _loggedin=true;
-    //                         });
-    //         },
-    //       );
 
-    //      }
-    //    }       
-    //  },
+      //  routes: {
+      //    '/': (BuildContext context ){
+      //      if(_loggedin){
+      //      return HomeScreen(
+      //         logoutSuccess: (){
+      //           setState(() {
+      //           _loggedin=false;
+      //                         });
+      //         },
+
+      //      );
+      //      } else {
+      //       return LoginScreen(
+      //         loginSuccess: (){
+      //           setState(() {
+      //           _loggedin=true;
+      //                         });
+      //         },
+      //       );
+
+      //      }
+      //    }
+      //  },
     );
   }
 }
-
