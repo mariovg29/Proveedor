@@ -11,7 +11,7 @@ import 'package:proveedor/src/screens/login/Screens/Screens.dart';
 
 Map<String, WidgetBuilder> getAplicationRoutes() {
   return <String, WidgetBuilder>{
-    '/': (BuildContext context) => LoginScreen(),
+    '/': (BuildContext context) => HomeScreen(),
     'home': (BuildContext context) => HomeScreen(),
     'agenda': (BuildContext context) => AgendaScreen(),
     'agregar': (BuildContext context) => AgregarScreen(),

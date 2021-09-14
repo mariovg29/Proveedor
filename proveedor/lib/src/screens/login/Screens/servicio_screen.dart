@@ -45,7 +45,7 @@ class _ProductScreenBody extends StatelessWidget {
                     left: 20,
                     child: IconButton(
                       onPressed: () => Navigator.of(context).pop(),
-                      icon: Icon(Icons.arrow_back_ios_new,
+                      icon: Icon(Icons.arrow_back_ios,
                           size: 40, color: Colors.white),
                     )),
                 Positioned(
