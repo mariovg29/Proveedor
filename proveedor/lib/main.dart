@@ -45,6 +45,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.pink,
       ),
+      initialRoute: 'login',
       routes: getAplicationRoutes(),
 
       //  routes: {

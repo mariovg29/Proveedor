@@ -14,29 +14,19 @@ class MonthWidgetHistorial extends StatefulWidget {
   final Map<String, double> titulos;
   final double total;
   
-  
-  
-
-
-  
-  
-  
-  
-  
-
 //Inicializa el valor de las ventas en 0 y hace la suma de la lista
   MonthWidgetHistorial({Key? key, required this.ventas}) :
 
         
         total= ventas.map((docs) => docs['Precio'])
         .fold(0.0, (a,b) => a+b),
-
+//Suma todas las ventas por mes
         daily = List.generate(30, (index) {
           return ventas.where((docs) => docs['Dia']== (index+1)).map
           ((docs) => docs['Precio']).fold(0.0, (a, b) => a+b);
          
         }),
-//Sumar todos los valores por categoría
+//Obtiene Tiulo y precio de cada colección
         titulos = ventas.fold({}, (Map<String,double>map, document) {
           if(!map.containsKey('Titulo')){
            
@@ -67,11 +57,6 @@ class _MonthWidgetHistorialState extends State<MonthWidgetHistorial> {
   
   @override
   Widget build(BuildContext context) {
-   print(widget.titulos);
-   print(widget.daily);
-   
-   
-     
    
     return Expanded(
       child: Column(
@@ -98,10 +83,10 @@ Widget _ventas(){
       style: TextStyle(
         fontWeight: FontWeight.bold,
         fontSize: 40.0,
-        color: Color(0xffff6161),)
+        color: Colors.purple,)
 
       ),
-      Text('Total de ingresos en Ventas',
+      Text('Total de ingresos por Ventas',
       style: TextStyle(
         fontWeight: FontWeight.bold,
         fontSize: 16.0,

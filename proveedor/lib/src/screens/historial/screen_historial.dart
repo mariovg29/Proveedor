@@ -79,7 +79,7 @@ class _HistorialScreenState extends State<HistorialScreen> {
                  );
                 }
                 return Center(
-                  child: CircularProgressIndicator());
+                  child: CircularProgressIndicator(color:Colors.pink));
               }
             
             ),
@@ -98,7 +98,7 @@ Widget _pageItem(String nombreMes, int position){
   final selected = TextStyle(
     fontSize: 25.0,
     fontWeight: FontWeight.bold,
-    color: Colors.purple,
+    color: Colors.pink,
   );
   final unselected= TextStyle(
     fontSize: 15.0,

@@ -34,7 +34,7 @@ class BotonesHome extends StatelessWidget {
               color: Colors.indigo,
               icon: Icons.design_services,
               text: 'Mis Servicios',
-              ruta: 'servicio'),
+              ruta: 'servicios'),
           _BotonesCard(
               color: Colors.green,
               icon: Icons.add,

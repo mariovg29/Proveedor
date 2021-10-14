@@ -21,5 +21,6 @@ Map<String, WidgetBuilder> getAplicationRoutes() {
     'perfil': (BuildContext context) => PerfilScreen(),
     'servicio': (BuildContext context) => ServiciosEdit(),
     'product': (BuildContext context) => ProductScreen(),
+    'login' : (BuildContext context)=> LoginScreen(),
   };
 }
