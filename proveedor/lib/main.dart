@@ -5,6 +5,8 @@ import 'package:proveedor/src/rutas/rutas.dart';
 import 'package:proveedor/src/screens/home/home_screen.dart';
 import 'package:proveedor/src/screens/login/login_screen.dart';
 import 'package:proveedor/src/screens/login/services/services.dart';
+import 'package:proveedor/src/screens/login_mario/login_screen.dart';
+import 'package:proveedor/src/screens/login_mario/login_state.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -30,7 +32,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool _loggedin = false;
+  
 
   @override
   Widget build(BuildContext context) {
@@ -39,38 +41,49 @@ class _MyAppState extends State<MyApp> {
         statusBarColor: Color(0xffff6161) // status bar color
         ));
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.pink,
+    return ChangeNotifierProvider<LoginState>(
+      create: (_)=>LoginState(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.pink,
+        ),
+        initialRoute: 'login',
+        routes: {'/': (BuildContext context){
+          var state= Provider.of<LoginState>(context);
+          if(state.isLoggedIn()){
+            return HomeScreen();
+          }else{
+            return LoginScreen2();
+          }
+        }}
+        //routes: getAplicationRoutes(),
+    
+        //  routes: {
+        //    '/': (BuildContext context ){
+        //      if(_loggedin){
+        //      return HomeScreen(
+        //         logoutSuccess: (){
+        //           setState(() {
+        //           _loggedin=false;
+        //                         });
+        //         },
+    
+        //      );
+        //      } else {
+        //       return LoginScreen(
+        //         loginSuccess: (){
+        //           setState(() {
+        //           _loggedin=true;
+        //                         });
+        //         },
+        //       );
+    
+        //      }
+        //    }
+        //  },
       ),
-      initialRoute: 'login',
-      routes: getAplicationRoutes(),
-
-      //  routes: {
-      //    '/': (BuildContext context ){
-      //      if(_loggedin){
-      //      return HomeScreen(
-      //         logoutSuccess: (){
-      //           setState(() {
-      //           _loggedin=false;
-      //                         });
-      //         },
-
-      //      );
-      //      } else {
-      //       return LoginScreen(
-      //         loginSuccess: (){
-      //           setState(() {
-      //           _loggedin=true;
-      //                         });
-      //         },
-      //       );
-
-      //      }
-      //    }
-      //  },
     );
   }
 }

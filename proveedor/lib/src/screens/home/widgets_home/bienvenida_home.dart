@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:proveedor/src/screens/login_mario/login_state.dart';
+import 'package:provider/provider.dart';
 
 
 
@@ -51,10 +53,14 @@ class BienvenidaHome extends StatelessWidget {
                 child: Container(
                                    
                   child: Center(
-                    child: CircleAvatar(
-                      radius: height*.04,
-                      backgroundImage: NetworkImage('https://cdn.pixabay.com/photo/2016/03/27/21/15/woman-1284304_960_720.jpg'),
+                    child: GestureDetector(
+                      onTap: ()=>Provider.of<LoginState>(context,listen:false).logout(),
+                      child: CircleAvatar(
+                        radius: height*.04,
+                        backgroundImage: NetworkImage('https://cdn.pixabay.com/photo/2016/03/27/21/15/woman-1284304_960_720.jpg'),
+                        
 
+                      ),
                     ),
                   ),
                 ),
