@@ -60,9 +60,10 @@ class Services extends ChangeNotifier {
   Future<String> updateServicio(Servicios servicio) async {
     final url = Uri.https(_baseUrl, 'servicios/${servicio.id}.json');
     final resp = await http.put(url, body: servicio.toJson());
+    // ignore: unused_local_variable
     final decodedData = resp.body;
 
-    //TODO: Actualizar el listado de Servicioos
+    // Actualizar el listado de Servicioos
     final index =
         this.servicios.indexWhere((element) => element.id == servicio.id);
     this.servicios[index] = servicio;

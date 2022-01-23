@@ -2,10 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:proveedor/src/rutas/rutas.dart';
-import 'package:proveedor/src/screens/home/home_screen.dart';
-import 'package:proveedor/src/screens/login/login_screen.dart';
 import 'package:proveedor/src/screens/login/services/services.dart';
-import 'package:proveedor/src/screens/login_mario/login_screen.dart';
 import 'package:proveedor/src/screens/login_mario/login_state.dart';
 import 'package:provider/provider.dart';
 
@@ -50,15 +47,15 @@ class _MyAppState extends State<MyApp> {
           primarySwatch: Colors.pink,
         ),
         initialRoute: 'login',
-        routes: {'/': (BuildContext context){
-          var state= Provider.of<LoginState>(context);
-          if(state.isLoggedIn()){
-            return HomeScreen();
-          }else{
-            return LoginScreen2();
-          }
-        }}
-        //routes: getAplicationRoutes(),
+        // routes: {'/': (BuildContext context){
+        //   var state= Provider.of<LoginState>(context);
+        //   if(state.isLoggedIn()){
+        //     return HomeScreen();
+        //   }else{
+        //     return LoginScreen2();
+        //   }
+        // }}
+        routes: getAplicationRoutes(),
     
         //  routes: {
         //    '/': (BuildContext context ){
