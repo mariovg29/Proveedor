@@ -1,11 +1,16 @@
+
 import 'package:flutter/material.dart';
 import 'package:proveedor/src/screens/home/widgets_home/background_home.dart';
 import 'package:proveedor/src/screens/home/widgets_home/bienvenida_home.dart';
 import 'package:proveedor/src/screens/home/widgets_home/botones_home.dart';
+import 'package:proveedor/src/screens/login/services/auth_service.dart';
+import 'package:provider/provider.dart';
 
 
 
 class HomeScreen extends StatelessWidget {
+
+  
   // final Function logoutSuccess;
 
   // const HomeScreen({Key? key, required this.logoutSuccess}) : super(key: key);
@@ -16,11 +21,20 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authService = Provider.of<AuthService>(context, listen: false);
 
            
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xffff6161),
+        actions: [
+          IconButton(
+            onPressed: (){
+              authService.logout();
+              Navigator.pushReplacementNamed(context, '/');
+            },
+             icon: Icon(Icons.login_outlined)),
+        ],
         title: Text('Home'),
         centerTitle: true,
       ),

@@ -54,6 +54,7 @@ class _ProductScreenBody extends StatelessWidget {
                     child: IconButton(
                       onPressed: () async {
                         final picker = new ImagePicker();
+                        // ignore: deprecated_member_use
                         final PickedFile? pickedFile = await picker.getImage(
                             // source: ImageSource.gallery,
                             source: ImageSource.camera,

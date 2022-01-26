@@ -2,8 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:proveedor/src/rutas/rutas.dart';
-import 'package:proveedor/src/screens/home/home_screen.dart';
-import 'package:proveedor/src/screens/login/login_screen.dart';
+import 'package:proveedor/src/screens/login/services/notification_service.dart';
 import 'package:proveedor/src/screens/login/services/services.dart';
 import 'package:provider/provider.dart';
 
@@ -17,7 +16,11 @@ class AppState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => Services())],
+      providers: [
+        ChangeNotifierProvider( create: (_) => Services() ),
+        ChangeNotifierProvider( create: (_) => AuthService()),
+
+        ],
       child: MyApp(),
     );
   }
@@ -30,7 +33,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool _loggedin = false;
+  //bool _loggedin = false;
 
   @override
   Widget build(BuildContext context) {
@@ -42,10 +45,13 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
+      initialRoute: 'checking',
       theme: ThemeData(
         primarySwatch: Colors.pink,
       ),
       routes: getAplicationRoutes(),
+      scaffoldMessengerKey: NotificationService.messengerKey,
+
 
       //  routes: {
       //    '/': (BuildContext context ){

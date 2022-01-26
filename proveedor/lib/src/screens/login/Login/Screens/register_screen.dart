@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:proveedor/src/screens/login/Login/Provider/Login_provider.dart';
 import 'package:proveedor/src/screens/login/Utils/InputDecoracion.dart';
 import 'package:proveedor/src/screens/login/Widgets/widgets.dart';
+import 'package:proveedor/src/screens/login/services/auth_service.dart';
 import 'package:proveedor/src/screens/login/services/services.dart';
 
 import 'package:provider/provider.dart';
 
-class LoginScreen extends StatelessWidget {
+class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +20,7 @@ class LoginScreen extends StatelessWidget {
                   child: Column(
                 children: [
                   SizedBox(height: 10),
-                  Text('Login', style: Theme.of(context).textTheme.headline4),
+                  Text('Crear cuenta', style: Theme.of(context).textTheme.headline4),
                   SizedBox(height: 30),
                   ChangeNotifierProvider(
                     create: (_) => LoginProvider(),
@@ -28,12 +29,8 @@ class LoginScreen extends StatelessWidget {
                 ],
               )),
                SizedBox(height: 50),
-              TextButton(
-                onPressed: ()=> Navigator.pushReplacementNamed(context, 'registro'),
-                style: ButtonStyle(
-                  shape: MaterialStateProperty.all( StadiumBorder())
-                ),
-               child: Text('Registrate como proveedor de servicios',
+              TextButton(onPressed: ()=> Navigator.pushReplacementNamed(context, '/'),
+               child: Text('¿Ya tienes una cuenta?',
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),),
               
               SizedBox(height: 50)
@@ -103,7 +100,7 @@ class LoginForm extends StatelessWidget {
                       padding:
                           EdgeInsets.symmetric(horizontal: 80, vertical: 15),
                       child: Text(
-                        loginForm.cargando ? 'Ingresando' : 'Ingresar',
+                        loginForm.cargando ? 'Registrando' : 'Registrarme',
                         style: TextStyle(color: Colors.white),
                       )),
                   onPressed: loginForm.cargando
@@ -117,13 +114,13 @@ class LoginForm extends StatelessWidget {
 
                           
                           // validar si el login es correcto
-                          final String? errorMessage = await authService.login(loginForm.email, loginForm.password);
+                          final String? errorMessage = await authService.createUser(loginForm.email, loginForm.password);
 
                           if(errorMessage == null){
                             Navigator.pushReplacementNamed(context, 'home');
 
                           }else {
-                            //  Mostrar error en pantalla
+                            // Mostrar error en pantalla
                             // print(errorMessage);
                             NotificationService.showSnackbar(errorMessage);
                           }
@@ -131,8 +128,7 @@ class LoginForm extends StatelessWidget {
                             loginForm.cargando=false;
 
                           
-                        }
-                        )
+                        })
             ])));
   }
 }

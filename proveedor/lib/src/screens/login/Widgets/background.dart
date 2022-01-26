@@ -39,6 +39,7 @@ class _CajaSuperior extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Stack(
       children: [
+        
         Container(
           width: double.infinity,
           height: size.height * 0.4,
@@ -53,7 +54,8 @@ class _CajaSuperior extends StatelessWidget {
             ),
           ),
         ),
-        Positioned(child: _Burbuja(), top: 150, left: 30),
+        Positioned(child: Text('OK PARTY', style: TextStyle(fontSize: 30,color: Colors.white,fontWeight: FontWeight.bold),),
+         top: 170, left: 130),
         Positioned(child: _Burbuja(), top: 00, left: 00),
         Positioned(child: _Burbuja(), top: 50, right: 90),
         Positioned(child: _Burbuja(), top: 200, left: 200),

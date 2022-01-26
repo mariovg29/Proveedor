@@ -7,11 +7,12 @@ import 'package:proveedor/src/screens/Perfil/screen_perfil.dart';
 import 'package:proveedor/src/screens/historial/screen_historial.dart';
 import 'package:proveedor/src/screens/home/home_screen.dart';
 import 'package:proveedor/src/screens/login/Login/Screens/login_screen.dart';
+import 'package:proveedor/src/screens/login/Login/Screens/register_screen.dart';
 import 'package:proveedor/src/screens/login/Screens/Screens.dart';
 
 Map<String, WidgetBuilder> getAplicationRoutes() {
   return <String, WidgetBuilder>{
-    '/': (BuildContext context) => HomeScreen(),
+    '/': (BuildContext context) => LoginScreen(),
     'home': (BuildContext context) => HomeScreen(),
     'agenda': (BuildContext context) => AgendaScreen(),
     'agregar': (BuildContext context) => AgregarScreen(),
@@ -21,5 +22,7 @@ Map<String, WidgetBuilder> getAplicationRoutes() {
     'perfil': (BuildContext context) => PerfilScreen(),
     'servicio': (BuildContext context) => ServiciosEdit(),
     'product': (BuildContext context) => ProductScreen(),
+    'registro': (BuildContext context) => RegisterScreen(),
+    'checking': (BuildContext context) => checkAuthScreen(),
   };
 }
