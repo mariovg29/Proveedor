@@ -14,7 +14,23 @@ class ServiciosEdit extends StatelessWidget {
     if (productsService.isLoading) return LoadingScreen();
 
     return Scaffold(
-      appBar: AppBar(title: Text('Servicios')),
+      appBar: AppBar(title: Text(' Mis Servicios'),
+       backgroundColor: Color(0xffff6161),
+      centerTitle: true,
+       actions: [
+        Container(
+          margin: EdgeInsets.only(right: 10),
+          child: Hero(
+            tag: 'Mis Servicios',
+            child: CircleAvatar(
+                  backgroundColor: Colors.indigo,
+                  child: Icon(Icons.design_services, size: 30),
+                  radius: 23,
+            ),
+          ),
+        )
+      ],
+      ),
       body: ListView.builder(
           itemCount: productsService.servicios.length,
           itemBuilder: (BuildContext context, int index) => GestureDetector(
